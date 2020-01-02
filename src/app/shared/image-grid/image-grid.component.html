@@ -1,0 +1,54 @@
+<div class="container image-grid">
+  <div class="row w-100 d-flex justify-content-center align-items-center">
+    <h3>{{title}}</h3>
+    <h5>( {{total}} )</h5>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div *ngFor="let item of data; let i = index" class="card cursor-hand" id="card{{i}}">
+
+        <div *ngIf="!isChecked(item.id)" class="checkbox btn-link">
+          <input type="checkbox" (click)="onAddToMyCollection(item.id)" id="like{{i}}" value="val" [checked]="isChecked(item.id)"/>
+          &nbsp;
+          <label for="like{{i}}">Add to MY COLLECTION</label>        
+        </div>      
+        <div *ngIf="isChecked(item.id) && !isMyCollection">
+          <strong>Already in MY COLLECTION</strong>
+        </div>
+        <div *ngIf="isMyCollection" class="btn-link">
+          <strong (click)="onRemove(i, item.id)" alt="Remove from MY COLLECTION">X - Remove from MY COLLECTION</strong>
+        </div>
+        <div (click)="openModal(template, item)">
+          <div class="card-text">
+            <strong>ID:</strong> {{item.id}}
+          </div>
+          <div class="card-text">
+            <strong>Username:</strong> {{item.username}}
+          </div>  
+          <div class="card-text">
+            <strong>Rating:</strong> {{item.rating | uppercase }}
+          </div>
+          <div class="card-text">
+            <strong>Import time:</strong> {{item.import_datetime}}
+          </div> 
+          <div class="card-text">
+            <strong>Type:</strong> {{item.type}}
+          </div>                    
+          <app-secured-image class="card-image" [src]="item.images.fixed_height.url"></app-secured-image>
+        </div>
+
+    </div>  
+  </div>
+</div>
+
+<!-- Modal -->
+<ng-template #template>
+  <div class="modal-header">
+     <strong> {{selectedItemTitle}} </strong>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-secured-image [src]="selectedItem"></app-secured-image>
+  </div>
+</ng-template>

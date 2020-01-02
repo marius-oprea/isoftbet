@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row">
+    <br>
+  </div>
+  <div class="row">
+    <div class="col no-gutters no-padding">
+      <h1>
+        <span class="cursor-hand" (click)="onHome()" >iSoftBet</span>
+      </h1>
+    </div>
+    <div class="col-auto">
+    </div>
+    <div class="px-2 col-xl-3 col-lg-3 col-md-4 col-sm-5 d-flex align-items-center justify-content-end">
+      <button type="button" class="btn btn-link no-gutters no-padding" (click)="onMyCollection()">MY COLLECTION ({{(collectionNo$ | async)?.length}})</button>
+    </div>    
+    <div class="px-2 col-lg-1 col-md-2 col-sm d-flex align-items-center justify-md-content-end">
+      <button type="button" class="btn btn-primary" (click)="onUpload()">Upload</button>
+    </div>
+  </div>
+  <div class="row">
+    <br>
+  </div>
+  <div class="row">
+    <div class="col no-gutters no-padding">
+      <div class="search input-group mb-3 px-2">   
+        <span class="fa fa-search"></span>
+        <input #searchCtrl type="text" class="form-control" placeholder="Search..." (keyup)="onSearch($event)">          
+      </div>            
+    </div>
+  </div>
+  <div class="row">
+    <div class="col no-gutters no-padding d-flex align-items-center">
+      <label class="cursor-hand search-check d-flex align-items-center separator">
+        <input type="checkbox" value="" (click)="onSearchMyCollection()">
+        &nbsp;        
+        search only in MY COLLECTION
+      </label>  
+    </div>
+  </div>
+  <div class="row">
+    <br>
+  </div>
+  <div class="row d-flex align-items-center">    
+    <div *ngIf="(searchTerm$ | async); else loading">
+        <div *ngIf="searchMyCollection">
+          <app-search-my-collection [term]="searchTerm$"></app-search-my-collection>
+        </div>
+        <div *ngIf="!searchMyCollection">
+          <app-search [term]="searchTerm$"></app-search>      
+        </div>      
+    </div>    
+
+    <ng-template #loading>
+      <app-trending></app-trending>
+    </ng-template>
+  </div>
+
+</div>
+  

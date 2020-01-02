@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <br>
+  </div>
+  <div class="row">
+    <div class="col no-gutters no-padding">
+      <h1>
+        <span class="cursor-hand" (click)="onHome()">iSoftBet</span>
+      </h1>
+    </div>    
+    <div class="col-auto">
+    </div>    
+    <div class="px-2 col-lg-1 col-md-2 col-sm d-flex align-items-center justify-md-content-end">
+      <button type="button" class="btn btn-primary" (click)="onUpload()">Upload</button>
+    </div>
+  </div>  
+  <div class="row">
+    <br>
+  </div>
+
+  <div class="row">
+    <br>
+  </div>   
+  <div class="row d-flex align-items-center">    
+    <div *ngIf="(data$ | async)?.pagination?.total_count !== 0">
+      <app-image-grid isMyCollection="true" title="MY COLLECTION" [total]="totalRecords$ | async" [data]="(data$ | async)?.data"></app-image-grid>
+      <div class="row">
+        <br>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <pagination 
+          previousText="&lsaquo;" 
+          nextText="&rsaquo;" 
+          firstText="&laquo;" 
+          lastText="&raquo;" 
+          [boundaryLinks]="true" 
+          [directionLinks]="true" 
+          [itemsPerPage]="8" 
+          [maxSize]="10" 
+          [totalItems]= "totalRecords$ | async" 
+          (pageChanged)="onPageChange($event)">
+        </pagination>
+      </div>
+      
+    </div>
+    <div *ngIf="(data$ | async)?.pagination?.total_count === 0">  
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="no-data">
+            NO DATA
+          </div>      
+        </div>
+      </div>
+    </div>
+  </div>    
+</div>

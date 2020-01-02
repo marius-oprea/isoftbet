@@ -1,0 +1,33 @@
+.card {
+  border: 1px solid black;
+  margin: 4px;
+  padding: 4px;
+  max-width: 275px;
+}
+
+.card-text {
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;  
+}
+
+.cursor-hand {
+  cursor: pointer;
+}
+
+.card-image {
+  max-width: 265px;
+  width: 265px;
+  max-height: 140px;
+  height: 140px;
+  border: 1px solid lightgray;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+
+.image-grid {
+  width: 100vw;
+}

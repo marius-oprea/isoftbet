@@ -1,0 +1,7 @@
+<div class="image-container align-middle">
+  <div #spinner class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>    
+
+  <img #image class="image" [src]="dataUrl$ | async" />      
+</div>
